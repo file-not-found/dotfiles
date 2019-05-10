@@ -31,6 +31,9 @@ else
     PS1="${GREEN}\u${HOST}${RESET} ${BLUE}\w${RESET} ${GREEN}\\$ ${RESET}"
 fi
 
+# environment
+export EDITOR=vim
+
 # aliases
 alias ls='ls --color=auto'
 alias copy='xclip -sel clip'
