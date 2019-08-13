@@ -5,9 +5,6 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# check for tmux
-[ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit;}
-
 # set colors
 RED="\[$(tput setaf 1)\]"
 GREEN="\[$(tput setaf 2)\]"
@@ -21,6 +18,9 @@ then
     HOST="@\h"
 else
     HOST=""
+
+    # check for tmux
+    [ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit;}
 fi
 
 # switch color for root
