@@ -26,9 +26,9 @@ fi
 # switch color for root
 if [[ $EUID -eq 0 ]]
 then
-    PS1="${RED}\u${HOST}${RESET} ${BLUE}\w${RESET} ${RED}\\$ ${RESET}"
+    PS1="${RED}\u${HOST}${RESET} ${CYAN}\w${RESET} ${RED}\\$ ${RESET}"
 else
-    PS1="${GREEN}\u${HOST}${RESET} ${BLUE}\w${RESET} ${GREEN}\\$ ${RESET}"
+    PS1="${GREEN}\u${HOST}${RESET} ${CYAN}\w${RESET} ${GREEN}\\$ ${RESET}"
 fi
 
 # environment
