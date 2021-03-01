@@ -19,8 +19,8 @@ then
 else
     HOST=""
 
-    # check for tmux
-    [ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit;}
+    # # check for tmux
+    # [ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit;}
 fi
 
 # switch color for root
