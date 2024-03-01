@@ -27,9 +27,36 @@ fi
 if [[ $EUID -eq 0 ]]
 then
     PS1="${RED}\u${HOST}${RESET} ${CYAN}\w${RESET} ${RED}\\$ ${RESET}"
+    FZF_DIRS=("/root" "/etc" "/run" "/usr" "/var")
+
 else
     PS1="${GREEN}\u${HOST}${RESET} ${CYAN}\w${RESET} ${GREEN}\\$ ${RESET}"
+    FZF_DIRS=("$HOME" "/run/media/$USERNAME")
 fi
+
+if [ -d "/media" ]
+then
+    FZF_DIRS+=("/media")
+fi
+if [ -d "/run/media" ]
+then
+    FZF_DIRS+=("/run/media")
+fi
+
+# fuzzy finder
+if [ -x "$(command -v fzf)"  ]
+then
+    source $(find $(find /usr/share -type d -name fzf) -type f -name key-bindings.bash)
+    if [ -x "$(command -v fd)"  ]
+    then
+        FZF_CTRL_T_COMMAND='fd -H . $FZF_DIRS'
+    fi
+    if [ -x "$(command -v fdfind)"  ]
+    then
+        FZF_CTRL_T_COMMAND='fdfind -H . $FZF_DIRS'
+    fi
+fi
+
 
 # environment
 export EDITOR=vim
