@@ -47,6 +47,8 @@ fi
 if [ -x "$(command -v fzf)"  ]
 then
     source $(find $(find /usr/share -type d -name fzf) -type f -name key-bindings.bash)
+    # # unfuzzy search
+    # FZF_DEFAULT_OPTS="-e $FZF_DEFAULT_OPTS"
     if [ -x "$(command -v fd)"  ]
     then
         FZF_CTRL_T_COMMAND='fd -H . $FZF_DIRS'
