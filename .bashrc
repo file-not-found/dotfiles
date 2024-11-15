@@ -27,13 +27,11 @@ fi
 if [[ $EUID -eq 0 ]]
 then
     PS1="${RED}\u${HOST}${RESET} ${CYAN}\w${RESET} ${RED}\\$ ${RESET}"
-    FZF_DIRS=("/root" "/etc" "/run" "/usr" "/var")
-
 else
     PS1="${GREEN}\u${HOST}${RESET} ${CYAN}\w${RESET} ${GREEN}\\$ ${RESET}"
-    FZF_DIRS=("$HOME" "/run/media/$USERNAME")
 fi
 
+FZF_DIRS=("$HOME" "/etc")
 if [ -d "/media" ]
 then
     FZF_DIRS+=("/media")
@@ -59,13 +57,20 @@ then
     fi
 fi
 
-
 # environment
 export EDITOR=vim
+export PATH="$HOME/.local/bin:$PATH"
+
+# bash completion
+bind TAB:menu-complete
+bind "set show-all-if-ambiguous on"
+bind "set menu-complete-display-prefix on"
 
 # aliases
 alias ls='ls --color=auto'
-alias copy='xclip -sel clip'
+alias ll='ls -la --color=auto'
 alias ff='find -type f -ls'
 alias ft='find -type f -exec file {} \;'
 alias fpe='find -type f -exec file {} \; | grep -P "PE32\+? executable"'
+alias tmp='cd `mktemp -d`'
+alias clip='xclip -selection clipboard'
